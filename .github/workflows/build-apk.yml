@@ -16,8 +16,11 @@ jobs:
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: '17'
-      - uses: android-actions/setup-android@v3
+          java-version: '21'
+      - name: Locate Android SDK
+        run: |
+          echo "ANDROID_HOME=$ANDROID_HOME"
+          test -d "$ANDROID_HOME/platforms" || exit 1
       - name: Install dependencies
         run: npm install
       - name: Add Android platform
